@@ -1,13 +1,10 @@
 <?php
+include_once('config/google_oauth_config.php');
 include 'inc/header.php';
 Session::CheckLogin();
-?>
-
-
-<?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-   $userLog = $users->userLoginAuthotication($_POST);
+    if(isset($users)) $userLog = $users->userLoginAuthotication($_POST);
 }
 if (isset($userLog)) {
   echo $userLog;
@@ -17,10 +14,8 @@ $logout = Session::get('logout');
 if (isset($logout)) {
   echo $logout;
 }
-
-
-
- ?>
+?>
+<link rel="stylesheet" href="assets/googleBtnStyle.css">
 
 <div class="card ">
   <div class="card-header">
@@ -46,9 +41,21 @@ if (isset($logout)) {
 
 
             </form>
+
+                <div class="container">
+                    <div class="well">
+                        <?php if (isset($googleAuthUrl)): ?>
+                            <form action="<?php echo $googleAuthUrl; ?>" method="post">
+                                <button type="submit" class="loginBtn loginBtn--google">
+                                    Login with Google
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <h3>Successfully! Authenticated</h3>
+                        <?php endif ?>
+                    </div>
+                </div>
           </div>
-
-
         </div>
       </div>
 

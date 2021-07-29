@@ -1,28 +1,24 @@
 <?php
+include_once('config/google_oauth_config.php');
 include 'inc/header.php';
 Session::CheckLogin();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-
-  $register = $users->userRegistration($_POST);
+    if(isset($users)) $register = $users->userRegistration($_POST);
 }
 
 if (isset($register)) {
   echo $register;
 }
+?>
 
-
- ?>
-
+<link rel="stylesheet" href="assets/googleBtnStyle.css">
 
  <div class="card ">
    <div class="card-header">
           <h3 class='text-center'>User Registration</h3>
         </div>
         <div class="cad-body">
-
-
-
             <div style="width:600px; margin:0px auto">
 
             <form class="" action="" method="post">
@@ -53,6 +49,20 @@ if (isset($register)) {
 
 
             </form>
+
+                <div class="container">
+                    <div class="well">
+                        <?php if (isset($googleAuthUrl)): ?>
+                            <form action="<?php echo $googleAuthUrl; ?>" method="post">
+                                <button type="submit" class="loginBtn loginBtn--google">
+                                    Register with Google
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <h3>Successfully! Authenticated</h3>
+                        <?php endif ?>
+                    </div>
+                </div>
           </div>
 
 
