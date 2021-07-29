@@ -1,1 +1,1 @@
-Just for test
+Copy .env.example to .env then adjust database and google api client
