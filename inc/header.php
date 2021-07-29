@@ -75,8 +75,22 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
                          ?>">
 
-                <a class="nav-link" href="addUser.php"><i class="fas fa-user-plus mr-2"></i>Add user </span></a>
+                  <a class="nav-link" href="addUser.php"><i class="fas fa-user-plus mr-2"></i>Add user </span></a>
               </li>
+                  <li class="nav-item
+
+              <?php
+
+                  $path = $_SERVER['SCRIPT_FILENAME'];
+                  $current = basename($path, '.php');
+                  if ($current == 'addBulkUsers') {
+                      echo " active ";
+                  }
+
+                  ?>">
+
+                      <a class="nav-link" href="addBulkUsers.php"><i class="fas fa-users-plus mr-2"></i>Add Bulk user </span></a>
+                  </li>
             <?php  } ?>
             <li class="nav-item
             <?php

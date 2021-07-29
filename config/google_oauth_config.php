@@ -22,6 +22,7 @@ $client->setApplicationName("Google OAuth Login With PHP");
 $client->setClientId($client_id);
 $client->setClientSecret($client_secret);
 $client->setRedirectUri($redirect_uri);
+$client->addScope('https://mail.google.com/');
 
 $objRes = new Google_Service_Oauth2($client);
 

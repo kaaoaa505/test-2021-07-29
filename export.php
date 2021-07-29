@@ -1,11 +1,14 @@
 <?php
+require('fpdf/fpdf.php');
 require_once "lib/Session.php";
 require_once "classes/Users.php";
 
-require('fpdf/fpdf.php');
-
 Session::init();
 Session::CheckSession();
+
+if(Session::get('roleid') != 1){
+    die("only admin allowed.");
+}
 
 class PDF extends FPDF
 {
@@ -53,10 +56,6 @@ class PDF extends FPDF
     }
 }
 
-if(Session::get('roleid') != 1){
-    echo "only admin allowed to export.";
-    exit;
-}
 
 $users = new Users();
 $allUsers = $users->selectAllUserData();
@@ -74,7 +73,7 @@ $header = array(
 );
 // Data loading
 $data = $pdf->LoadData($allUsers);
-$pdf->SetFont('Arial','',8);
+$pdf->SetFont('Arial','',10);
 $pdf->AddPage();
 $pdf->BasicTable($header,$data);
 $pdf->Output();

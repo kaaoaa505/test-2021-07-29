@@ -6,8 +6,7 @@ if ($sId === '1') { ?>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addUser'])) {
-
-  $userAdd = $users->addNewUserByAdmin($_POST);
+  if(isset($users)) $userAdd = $users->addNewUserByAdmin($_POST);
 }
 
 if (isset($userAdd)) {
