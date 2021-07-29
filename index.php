@@ -18,7 +18,8 @@ Session::set("logMsg", NULL);
 
 if (isset($_GET['remove'])) {
   $remove = preg_replace('/[^a-zA-Z0-9-]/', '', (int)$_GET['remove']);
-  $removeUser = $users->deleteUserById($remove);
+
+  if(isset($users)) $removeUser = $users->deleteUserById($remove);
 }
 
 if (isset($removeUser)) {
